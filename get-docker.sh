@@ -5,6 +5,8 @@ DOCKERVER='19.03.8'
 
 echo "get (docker-${DOCKERVER})"
 
+cd `dirname $0`
+
 install -D -m 755 docker.sh /usr/local/sbin/dockerctl
 
 mkdir -p /usr/local/bin

@@ -82,13 +82,33 @@ status() {
 	fi
 }
 
+poll() {
+	sleep 1
+
+	i=30
+	while ! pid > /dev/null; do
+		sleep 1
+		i=$(expr $i - 1)
+		if [ "$i" -le 0 ]; then
+			echo >&2 "error: failed to start Docker daemon"
+			exit 1
+		fi
+	done
+}
+
+boot() {
+	start
+	poll
+	docker info
+}
+
 case "$1" in
-	start|stop|restart|reload|status)
+	start|stop|restart|reload|status|poll|boot)
 		"$1"
 		;;
 
 	*)
-		echo "Usage $0 {start|stop|restart|reload|status}"
+		echo "Usage $0 {start|stop|restart|reload|status|poll|boot}"
 		exit 1
 		;;
 esac

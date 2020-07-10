@@ -30,7 +30,7 @@ if [ ! -f "${CERTDIR}/server/cert.pem" ]; then
 		-subj "/CN=alpish-docker server"
 	cat > ${CERTDIR}/server/openssl.cnf << EOF
 [ x509_exts ]
-subjectAltName = DNS:localhost,IP:127.0.0.1
+subjectAltName = DNS:localhost,DNS:alpish,IP:127.0.0.1,IP:::1
 EOF
 	openssl x509 -req \
 		-in ${CERTDIR}/server/csr.pem \

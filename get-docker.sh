@@ -1,7 +1,7 @@
 #!/bin/sh
 set -ex
 
-DOCKERVER='20.10.10'
+DOCKERVER='20.10.11'
 
 echo "get (docker-${DOCKERVER})"
 

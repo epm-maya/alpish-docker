@@ -100,6 +100,8 @@ boot() {
 	start
 	poll
 	docker info
+	docker buildx version
+	docker compose version
 }
 
 case "$1" in

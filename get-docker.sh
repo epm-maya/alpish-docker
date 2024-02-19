@@ -1,7 +1,9 @@
 #!/bin/sh
-set -ex
+set -eux
 
 DOCKERVER='25.0.3'
+BUILDXVER='0.12.1'
+COMPOSEVER='2.24.6'
 
 echo "get (docker-${DOCKERVER})"
 
@@ -16,5 +18,12 @@ tar xzf docker.tgz
 mv docker/* /usr/local/bin/
 rm -rf docker
 rm docker.tgz
+
+curl -fLo docker-buildx https://github.com/docker/buildx/releases/download/v${BUILDXVER}/buildx-v${BUILDXVER}.linux-amd64
+curl -fLo docker-compose https://github.com/docker/compose/releases/download/v${COMPOSEVER}/docker-compose-linux-x86_64
+chmod +x docker-*
+
+mkdir -p /usr/local/libexec/docker/cli-plugins
+mv docker-* /usr/local/libexec/docker/cli-plugins/
 
 echo "DONE"

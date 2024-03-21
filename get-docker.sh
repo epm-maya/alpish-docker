@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eux
 
-DOCKERVER='25.0.5'
+DOCKERVER='26.0.0'
 BUILDXVER='0.13.1'
 COMPOSEVER='2.25.0'
 

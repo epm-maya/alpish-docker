@@ -21,6 +21,16 @@ pid() {
 	return 1
 }
 
+setupqemu() {
+	if test ! -f /usr/local/bin/qemu-aarch64-static; then
+		return 0
+	fi
+	if test ! -f /proc/sys/fs/binfmt_misc/aarch64; then
+		echo ':aarch64:M:0:\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\xb7\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/local/bin/qemu-aarch64-static:CF' > /proc/sys/fs/binfmt_misc/register
+	fi
+	cat /proc/sys/fs/binfmt_misc/aarch64
+}
+
 start() {
 	if pid="$(pid)"; then
 		echo >&2 "error: Docker daemon is already running ($pid)"
@@ -97,6 +107,7 @@ poll() {
 }
 
 boot() {
+	setupqemu
 	start
 	poll
 	docker info

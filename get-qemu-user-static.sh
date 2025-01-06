@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eux
 
-QEMUVER='9.1.2-1'
+QEMUVER='9.2.0-1'
 
 echo "get (qemu-user-${QEMUVER})"
 

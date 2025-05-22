@@ -2,7 +2,7 @@
 set -eux
 
 DOCKERVER='28.1.1'
-BUILDXVER='0.23.0'
+BUILDXVER='0.24.0'
 COMPOSEVER='2.36.1'
 
 echo "get (docker-${DOCKERVER})"
